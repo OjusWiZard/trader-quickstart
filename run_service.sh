@@ -581,7 +581,7 @@ directory="trader"
 service_repo=https://github.com/$org_name/$directory.git
 # This is a tested version that works well.
 # Feel free to replace this with a different version of the repo, but be careful as there might be breaking changes
-service_version="v0.15.0"
+service_version="feat/relayer"
 
 # Define constants for on-chain interaction
 gnosis_chain_id=100
@@ -613,6 +613,14 @@ then
     export AGENT_REGISTRY_ADDRESS="0xAed729d4f4b895d8ca84ba022675bB0C44d2cD52"
     export MECH_REQUEST_PRICE=0
 fi
+
+if [ "$USE_RELAYER" == "true" ];
+then
+    echo "A relayer will be used to pay for the mech requests."
+    export RELAYER_ENDPOINT=https://relayer.autonolas.tech
+    export AGENT_BALANCE_THRESHOLD=0
+fi
+
 
 sleep_duration=12
 
